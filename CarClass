@@ -1,5 +1,8 @@
 class car:
-    def __init__(self, car_ID, Reg_Num, manufacturer, model_type, sipp_code, max_seating_capacity, width, length, max_speed, mpg, on_hire, largest_car_ID):
+    MIN_NUM_OF_SEATS = 1
+    MAX_NUM_OF_SEATS = 10
+    def __init__(self, car_ID, Reg_Num, manufacturer, model_type, sipp_code, max_seating_capacity, width, length,
+                 max_speed, mpg, on_hire, largest_car_ID):
         self.car_ID = car_ID
         self.Reg_Num = Reg_Num
         self.manufacturer = manufacturer
@@ -12,31 +15,71 @@ class car:
         self.mpg = mpg
         self.on_hire = on_hire
 
-
-
-        if not isinstance(self.manufacturer.upper, str) or len(self.manufacturer.upper) > 20:
-            raise ValueError('Manufacturer must be less than 25')
-        if len(self.model_type) > 20:
-            raise ValueError('Model name must be less than 25 characters')
-        if self.max_seating_capacity < 1 or self.max_seating_capacity > 11:
-            raise ValueError('The maximum seating capacity must be between 1 and 10')
-        if self.width < 1000 or self.width > 2501:
-            raise ValueError("The car's width must be between 1600mm and 2100mm")
-        if self.length < 1000 or self.length > 10001:
-            raise ValueError("The car's length must be between 1000mm and 10000mm")
-        if self.mpg < 5 or self.mpg > 80:
-            raise ValueError("The car's MPG must be between 5 and 80")
-        if self.sipp_code < 4 or self.sipp_code > 4:
-            raise ValueError ('Sipp Code is incorrect')
-        if self.max_speed <30 or self.max_speed > 310:
-            raise ValueError("The car's max speed has to be between 30 and 310mph")
-        if self.Reg_Num < 2 or self.Reg_Num > 10:
-            raise ValueError("The car's number plate has to be between 2 and 10 characters")
-        if not isinstance(self.car_ID, int):
-            raise ValueError('Car ID must be a number')
-
     def __str__(self):
         return f"{self.car_ID} {self.Reg_Num} {self.manufacturer} {self.model_type} {self.sipp_code} {self.max_seating_capacity} {self.width} {self.length} {self.max_speed} {self.mpg} {self.on_hire}"
+    @property
+    def Reg_Num(self):
+        return self._Reg_Num
+    @Reg_Num.setter
+    def Reg_Num(self,Reg_Num):
+        self._Reg_Num = Reg_Num
+        
+    @property
+    def manufacturer(self):
+        return self._manufacturer
 
-def largest_car_ID:
+    @manufacturer.setter
+    def manufacturer(self, manufacturer):
+        self._manufacturer = manufacturer
+
+    @property
+    def model_type(self):
+        return self._model_type
+    @model_type.setter
+    def model_type(self, model):
+        self._model_type = model
+        
+    @property
+    def sipp_code(self):
+        return self._sipp_code
+    @sipp_code.setter
+    def sipp_code(self, sipp_code):
+        self._sipp_code = sipp_code
     
+    @property
+    def max_seating_capacity(self):
+        return self._max_seating_capacity
+    
+    @max_seating_capacity.setter
+    def max_seating_capacity(self, seat_capacity):
+        if car.MIN_NUM_OF_SEATS <= seat_capacity <= car.MAX_NUM_OF_SEATS:
+            self._max_seat_capacity = seat_capacity
+        else:
+            self._max_seat_capacity = 0
+            print('Invalid number of seats')
+    @property
+    def width(self):
+        return self._width
+    @width.setter
+    def width(self, width):
+        self._width = width
+    
+    @property
+    def length(self):
+        return self._length
+    @length.setter
+    def length(self, length):
+        self._length = length
+    @property
+    def max_speed(self):
+        return self._max_speed
+    @max_speed.setter
+    def max_speed(self, max_speed):
+        self._max_speed = max_speed
+        
+    @property
+    def mpg(self):
+        return self._mpg
+    @mpg.setter
+    def mpg(self, mpg):
+        self._mpg = mpg
