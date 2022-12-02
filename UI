@@ -1,0 +1,31 @@
+def menu(userchoice):
+    f = open('CarRegistry.dat', 'r')
+    print(f.read())
+
+    print('Menu: ')
+    print('A - Add car to registry')
+    print('D - Delete Car from registry')
+    print('H - Hire out')
+    print('R - Return car to Garage')
+    print('U - Update Car Registry')
+    print('')
+    print('X - Exit')
+userchoice = input()
+
+
+while not userchoice.upper == 'Q':
+    print (menu())
+if userchoice.upper() == 'A':
+    print(input('What car do you want to add to the registry?:'))
+elif userchoice.upper() == 'D':
+    print(input('Which car do you want to delete from the registry?: '))
+elif userchoice.upper() == 'H':
+    print(input('Which car do you want to hire out?: '))
+elif userchoice.upper() == 'R':
+    print(input('Which car do you want to return?: '))
+elif userchoice.upper() == 'X':
+    exit()
+else:
+   print('invalid choice option')
+   menu(userchoice)
+
