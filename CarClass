@@ -1,6 +1,14 @@
 class car:
     MIN_NUM_OF_SEATS = 1
     MAX_NUM_OF_SEATS = 10
+    MAX_WIDTH = 2500
+    MIN_WIDTH = 1000
+    MAX_LENGTH = 10000
+    MIN_LENGTH = 1000
+    MAX_MPG = 80
+    MIN_MGP = 5
+    MAX_MAX_SPEED = 310
+    MIN_MAX_SPEED = 30
     def __init__(self, car_ID, Reg_Num, manufacturer, model_type, sipp_code, max_seating_capacity, width, length,
                  max_speed, mpg, on_hire, largest_car_ID):
         self.car_ID = car_ID
@@ -23,7 +31,7 @@ class car:
     @Reg_Num.setter
     def Reg_Num(self,Reg_Num):
         self._Reg_Num = Reg_Num
-        
+
     @property
     def manufacturer(self):
         return self._manufacturer
@@ -38,18 +46,18 @@ class car:
     @model_type.setter
     def model_type(self, model):
         self._model_type = model
-        
+
     @property
     def sipp_code(self):
         return self._sipp_code
     @sipp_code.setter
     def sipp_code(self, sipp_code):
         self._sipp_code = sipp_code
-    
+
     @property
     def max_seating_capacity(self):
         return self._max_seating_capacity
-    
+
     @max_seating_capacity.setter
     def max_seating_capacity(self, seat_capacity):
         if car.MIN_NUM_OF_SEATS <= seat_capacity <= car.MAX_NUM_OF_SEATS:
@@ -62,24 +70,28 @@ class car:
         return self._width
     @width.setter
     def width(self, width):
+        if car.MIN_WIDTH <= width <= car.MAX_WIDTH:
         self._width = width
-    
+
     @property
     def length(self):
         return self._length
     @length.setter
     def length(self, length):
+        if car.MIN_LENGTH <= length <= car.MAX_LENGTH:
         self._length = length
     @property
     def max_speed(self):
         return self._max_speed
     @max_speed.setter
     def max_speed(self, max_speed):
+        if car.MIN_MAX_SPEED <= max_speed <= car.MAX_MAX_SPEED:
         self._max_speed = max_speed
-        
+
     @property
     def mpg(self):
         return self._mpg
     @mpg.setter
     def mpg(self, mpg):
+        if car.MIN_MGP <= mpg <=car.MAX_MPG:
         self._mpg = mpg
