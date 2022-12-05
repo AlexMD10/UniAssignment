@@ -1,4 +1,4 @@
-class car:
+class Car:
     MIN_NUM_OF_SEATS = 1
     MAX_NUM_OF_SEATS = 10
     MAX_WIDTH = 2500
@@ -9,10 +9,11 @@ class car:
     MIN_MGP = 5
     MAX_MAX_SPEED = 310
     MIN_MAX_SPEED = 30
-    def __init__(self, car_ID, Reg_Num, manufacturer, model_type, sipp_code, max_seating_capacity, width, length,
-                 max_speed, mpg, on_hire, largest_car_ID):
-        self.car_ID = car_ID
-        self.Reg_Num = Reg_Num
+
+    def __init__(self, car_id, reg_num, manufacturer, model_type, sipp_code, max_seating_capacity, width, length, max_speed, mpg, on_hire):
+
+        self.car_ID = car_id
+        self.Reg_Num = reg_num
         self.manufacturer = manufacturer
         self.model_type = model_type
         self.sipp_code = sipp_code
@@ -24,74 +25,97 @@ class car:
         self.on_hire = on_hire
 
     def __str__(self):
-        return f"{self.car_ID} {self.Reg_Num} {self.manufacturer} {self.model_type} {self.sipp_code} {self.max_seating_capacity} {self.width} {self.length} {self.max_speed} {self.mpg} {self.on_hire}"
-    @property
-    def Reg_Num(self):
-        return self._Reg_Num
-    @Reg_Num.setter
-    def Reg_Num(self,Reg_Num):
-        self._Reg_Num = Reg_Num
+        return f"{self.car_ID} {self.reg_num} {self.manufacturer} {self.model_type} {self.sipp_code} {self.max_seating_capacity} {self.width} {self.length} {self.max_speed} {self.mpg} {self.on_hire}"
 
-    @property
-    def manufacturer(self):
-        return self._manufacturer
+   # @property
+    #def reg_num(self):
+     #   return self.reg_num
 
-    @manufacturer.setter
+    #@reg_num.setter
+    def reg_num(self, reg_num):
+        self.reg_num = reg_num
+
+    # @property
+    # def manufacturer(self):
+    #     return self.manufacturer
+
+    #@manufacturer.setter
     def manufacturer(self, manufacturer):
-        self._manufacturer = manufacturer
+        self.manufacturer = manufacturer
 
-    @property
-    def model_type(self):
-        return self._model_type
-    @model_type.setter
+    # @property
+    # def model_type(self):
+    #     return self.model_type
+
+#    @model_type.setter
     def model_type(self, model):
         self._model_type = model
 
-    @property
-    def sipp_code(self):
-        return self._sipp_code
-    @sipp_code.setter
+    # @property
+    # def sipp_code(self):
+    #     return self.sipp_code
+
+#    @sipp_code.setter
     def sipp_code(self, sipp_code):
         self._sipp_code = sipp_code
 
-    @property
-    def max_seating_capacity(self):
-        return self._max_seating_capacity
+    # @property
+    # def max_seating_capacity(self):
+    #     return self.max_seating_capacity
 
-    @max_seating_capacity.setter
+#    @max_seating_capacity.setter
     def max_seating_capacity(self, seat_capacity):
-        if car.MIN_NUM_OF_SEATS <= seat_capacity <= car.MAX_NUM_OF_SEATS:
-            self._max_seat_capacity = seat_capacity
+        if Car.MIN_NUM_OF_SEATS <= seat_capacity <= Car.MAX_NUM_OF_SEATS:
+            self._max_seating_capacity = seat_capacity
         else:
-            self._max_seat_capacity = 0
+            self._max_seating_capacity = 0
             print('Invalid number of seats')
-    @property
-    def width(self):
-        return self._width
-    @width.setter
+
+    # @property
+    # def width(self):
+    #     return self.width
+
+#    @width.setter
     def width(self, width):
-        if car.MIN_WIDTH <= width <= car.MAX_WIDTH:
-        self._width = width
+        if Car.MIN_WIDTH <= width <= Car.MAX_WIDTH:
+            self._width = width
+        else:
+            self._width = 0
+        print('Width has to be between 1000 and 2500')
 
-    @property
-    def length(self):
-        return self._length
-    @length.setter
+    # @property
+    # def length(self):
+    #     return self.length
+
+#    @length.setter
     def length(self, length):
-        if car.MIN_LENGTH <= length <= car.MAX_LENGTH:
-        self._length = length
-    @property
-    def max_speed(self):
-        return self._max_speed
-    @max_speed.setter
-    def max_speed(self, max_speed):
-        if car.MIN_MAX_SPEED <= max_speed <= car.MAX_MAX_SPEED:
-        self._max_speed = max_speed
+        if Car.MIN_LENGTH <= length <= Car.MAX_LENGTH:
+            self._length = length
+        else:
+            self._length = 0
+        print('Length has to be between 1000 and 10000')
 
-    @property
-    def mpg(self):
-        return self._mpg
-    @mpg.setter
+    # @property
+    # def max_speed(self):
+    #     return self.max_speed
+
+#    @max_speed.setter
+    def max_speed(self, max_speed):
+        if Car.MIN_MAX_SPEED <= max_speed <= Car.MAX_MAX_SPEED:
+            self._max_speed = max_speed
+        else:
+            self._max_speed = 0
+        print('Max Speed has to be between 30 and 310mph')
+
+    # @property
+    # def mpg(self):
+    #     return self.mpg
+
+#    @mpg.setter
     def mpg(self, mpg):
-        if car.MIN_MGP <= mpg <=car.MAX_MPG:
-        self._mpg = mpg
+        if Car.MIN_MGP <= mpg <= Car.MAX_MPG:
+            self._mpg = mpg
+        else:
+            self._mpg = 0
+        print('Mpg has to be between 5 and 80')
+
