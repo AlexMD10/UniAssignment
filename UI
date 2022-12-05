@@ -52,27 +52,41 @@ userchoice = input()
 
 #while not userchoice.upper == 'Q':
 #print (menu())
-if  userchoice.upper() == 'A':
+if userchoice.upper() == 'A':
     car = []
-    CarObject = BasicCarClass.Car(1, 'reg_num', 'FORD', 'FIESTA', 'SHMP', 3, 2200, 3000, 250, 45, False)
+    CarObject = BasicCarClass.Car(16, 'reg_num', 'manufacturer', 'model_type', 'SHMP', 3, 2200, 3000, 250, 45, False)
     reg_value = (input("What is the car's Registration Number?"))
-    car.append(reg_value)
-    print(car[0])
-    reg = car[0]
     manu_value = (input(('What is the Manufactuer of the car?')))
+    model_type = (input('What is the Model of the car?'))
+    sipp_code = (input('What is the SIPP code for the car?'))
+    max_seating_capacity = (input('What is the maximum seating capacity of the car?'))
+    car.append(reg_value)
     car.append(manu_value)
+    car.append(model_type)
+    car.append(sipp_code)
+    car.append(max_seating_capacity)
+    #print(car[2])
+    reg = car[0]
+    manu = car[1]
+    model = car[2]
+    sipp = car[3]
+    max_seat = car[4]
     CarObject.reg_num(reg)
-    print(CarObject)
+    #CarObject.manufacturer(manu)
+    #CarObject.model_type(model)
+    #CarObject.sipp_code(sipp)
+    CarObject.max_seating_capacity(max_seat)
+    print('Your car is a:', CarObject)
 elif userchoice.upper() == 'D':
     print(input('Which car do you want to delete from the registry?: '))
 elif userchoice.upper() == 'H':
     print(input('Which car do you want to hire out?: '))
 elif userchoice.upper() == 'R':
-   print(input('Which car do you want to return?: '))
+    print(input('Which car do you want to return?: '))
 elif userchoice.upper() == 'X':
     exit()
 else:
-     print('invalid choice option')
+    print('invalid choice option')
   #   menu(userchoice)
 
 # def menu():
