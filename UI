@@ -1,11 +1,11 @@
 #import numpy as np
 import csv
-import pandas as pd
+
 from BasicCarClass import Car
 #from CARCLASS import CAR
-file = pd.read_csv('CarRegistry.dat')
-#print('CarRegistry.dat')
-print(file)
+f = open('CarRegistry.dat', 'r')
+print(f.read())
+
 
 #def menu(userchoice):
 #f = open('CarRegistry.dat', 'r')
