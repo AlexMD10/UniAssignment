@@ -1,9 +1,10 @@
-import BasicCarClass
-import numpy as np
+#import numpy as np
+import csv
 import pandas as pd
 from BasicCarClass import Car
+#from CARCLASS import CAR
 file = pd.read_csv('CarRegistry.dat')
-print('CarRegistry.dat')
+#print('CarRegistry.dat')
 print(file)
 
 #def menu(userchoice):
@@ -54,29 +55,34 @@ userchoice = input()
 #print (menu())
 if userchoice.upper() == 'A':
     car = []
-    CarObject = BasicCarClass.Car(16, 'reg_num', 'manufacturer', 'model_type', 'SHMP', 3, 2200, 3000, 250, 45, False)
-    reg_value = (input("What is the car's Registration Number?"))
-    manu_value = (input(('What is the Manufactuer of the car?')))
-    model_type = (input('What is the Model of the car?'))
-    sipp_code = (input('What is the SIPP code for the car?'))
-    max_seating_capacity = (input('What is the maximum seating capacity of the car?'))
-    car.append(reg_value)
-    car.append(manu_value)
-    car.append(model_type)
-    car.append(sipp_code)
-    car.append(max_seating_capacity)
-    #print(car[2])
-    reg = car[0]
-    manu = car[1]
-    model = car[2]
-    sipp = car[3]
-    max_seat = car[4]
-    CarObject.reg_num(reg)
+    car_ID = int
+    reg_num = (input("What is the car's Registration Number?").upper())
+    manufact = (input("What is the Manufacturer of the car?").upper())
+    model_type = (input('What is the Model of the car?').upper())
+    sipp_code = (input('What is the SIPP code for the car?').upper())
+    max_seating_capacity = (input('What is the maximum seating capacity of the car?').upper())
+    width = (int(input("What is the car's width in mm?")))
+    length = (int(input("What is the car's length in mm?")))
+    max_speed = (int(input("What is the car's max speed in MPH?")))
+    mpg = (int(input("What is the car's mpg?")))
+    CarObject = Car(car_ID ,reg_num , manufact, model_type, sipp_code, max_seating_capacity, width, length , max_speed , mpg , False)
+    # CarObject.append(reg_value.upper())
+    # CarObject.append(manufact.upper())
+    # CarObject.append(model_type.upper())
+    # CarObject.append(sipp_code.upper())
+    # CarObject.append(max_seating_capacity.upper())
+    # #print(car)
+    # reg = car[1]
+    # manu = car[2]
+    # model = car[3]
+    # sipp = car[3]
+    # max_seat = car[4]
+    #CarObject.reg_num(reg)
     #CarObject.manufacturer(manu)
     #CarObject.model_type(model)
     #CarObject.sipp_code(sipp)
-    CarObject.max_seating_capacity(max_seat)
-    print('Your car is a:', CarObject)
+    #CarObject.max_seating_capacity(max_seat)
+    print(CarObject)
 elif userchoice.upper() == 'D':
     print(input('Which car do you want to delete from the registry?: '))
 elif userchoice.upper() == 'H':
