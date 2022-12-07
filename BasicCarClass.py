@@ -14,15 +14,15 @@ class Car:
 
         self.car_ID = car_id
         self.Reg_Num = reg_num
-        self.manufacturer = manufacturer
-        self.model_type = model_type
-        self.sipp_code = sipp_code
-        self.max_seating_capacity = max_seating_capacity
-        self.width = width
-        self.length = length
-        self.max_speed = max_speed
-        self.mpg = mpg
-        self.on_hire = on_hire
+        self.Manufacturer = manufacturer
+        self.Model_Type = model_type
+        self.Sipp_Code = sipp_code
+        self.Max_Seating_Capacity = max_seating_capacity
+        self.Width = width
+        self.Length = length
+        self.Max_Speed = max_speed
+        self.Mpg = mpg
+        self.On_Hire = on_hire
 
     def __str__(self):
         return f"{self.car_ID} {self.reg_num} {self.manufacturer} {self.model_type} {self.sipp_code} {self.max_seating_capacity} {self.width} {self.length} {self.max_speed} {self.mpg} {self.on_hire}"
@@ -118,4 +118,8 @@ class Car:
         else:
             self._mpg = 0
         print('Mpg has to be between 5 and 80')
+
+    def on_hire(self, on_hire):
+        if on_hire == True:
+            self.on_hire = True
 

@@ -71,11 +71,12 @@ if userchoice.upper() == 'A':
     model = car[2]
     sipp = car[3]
     max_seat = car[4]
+    print(max_seat)
     CarObject.reg_num(reg)
-    #CarObject.manufacturer(manu)
-    #CarObject.model_type(model)
-    #CarObject.sipp_code(sipp)
-    CarObject.max_seating_capacity(max_seat)
+    CarObject.manufacturer(manu)
+    CarObject.model_type(model)
+    CarObject.sipp_code(sipp)
+    CarObject.max_seating_capacity(4)
     print('Your car is a:', CarObject)
 elif userchoice.upper() == 'D':
     print(input('Which car do you want to delete from the registry?: '))

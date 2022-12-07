@@ -1,0 +1,3 @@
+{
+    "python.analysis.extraPaths": ["/usr/local/bin/python3"]
+}
