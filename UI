@@ -1,3 +1,4 @@
+import os
 #import numpy as np
 import csv
 import pandas as pd
@@ -46,7 +47,7 @@ print('D - Delete Car from registry')
 print('H - Hire out')
 print('R - Return car to Garage')
 print('U - Update Car Registry')
-print('')
+#print('')
 print('X - Exit')
 userchoice = input()
 
@@ -55,8 +56,8 @@ userchoice = input()
 #print (menu())
 if userchoice.upper() == 'A':
     car = []
-    CarObject = BasicCarClass.Car('reg_num', 'manufacturer', 'model_type', 'SHMP', 3, 2200, 3000, 250, 45, False)
     csv_length = len('CarRegistry.dat')
+    CarObject = BasicCarClass.Car('reg_num', 'manufacturer', 'model_type', 'SHMP', 3, 2200, 3000, 250, 45, False)
     #car_ID = str(pd.axes + 1) + ',' + ','.join(str(x) for x in car)
     reg_num = (input("What is the car's Registration Number?").upper())
     manufact = (input("What is the Manufacturer of the car?").upper())
@@ -81,7 +82,7 @@ if userchoice.upper() == 'A':
     car.append(max_speed)
     car.append(mpg)
     car.append(on_hire)
-    #car.append('\n')
+    car.append('\n')
     #print(car)
     car_ID = car[0]
     reg = car[1]
@@ -104,7 +105,8 @@ if userchoice.upper() == 'A':
     # then open the file and write the new line easy peasy
     with open('CarRegistry.dat', 'a') as fd:
         fd.write(car_ID)
-        print('You have entered:', car_ID)
+        fd.close()
+        print(car_ID)
 
 elif userchoice.upper() == 'D':
     print(input('Which car do you want to delete from the registry?: '))
@@ -120,6 +122,5 @@ elif userchoice.upper() == 'X':
 else:
     print('invalid choice option')
     #print(menu)
-
 
 
