@@ -1,9 +1,9 @@
 #import numpy as np
 import csv
-
-from BasicCarClass import Car
-#from CARCLASS import CAR
+import pandas as pd
+import BasicCarClass
 f = open('CarRegistry.dat', 'r')
+#pd.read_csv('CarRegistry.dat')
 print(f.read())
 
 
@@ -25,7 +25,7 @@ print(f.read())
 # #f.readlines()
 # for row in f:
 #     fields = row.split(',')
-#     print(fields)
+#    print(fields)
 #     data.append({
 #         'ID':fields[0],
 #         'REG':fields[1],
@@ -55,7 +55,9 @@ userchoice = input()
 #print (menu())
 if userchoice.upper() == 'A':
     car = []
-    car_ID = int
+    CarObject = BasicCarClass.Car('reg_num', 'manufacturer', 'model_type', 'SHMP', 3, 2200, 3000, 250, 45, False)
+    csv_length = len('CarRegistry.dat')
+    #car_ID = str(pd.axes + 1) + ',' + ','.join(str(x) for x in car)
     reg_num = (input("What is the car's Registration Number?").upper())
     manufact = (input("What is the Manufacturer of the car?").upper())
     model_type = (input('What is the Model of the car?').upper())
@@ -65,26 +67,50 @@ if userchoice.upper() == 'A':
     length = (int(input("What is the car's length in mm?")))
     max_speed = (int(input("What is the car's max speed in MPH?")))
     mpg = (int(input("What is the car's mpg?")))
-    CarObject = Car(car_ID ,reg_num , manufact, model_type, sipp_code, max_seating_capacity, width, length , max_speed , mpg , False)
-    # CarObject.append(reg_value.upper())
-    # CarObject.append(manufact.upper())
-    # CarObject.append(model_type.upper())
-    # CarObject.append(sipp_code.upper())
-    # CarObject.append(max_seating_capacity.upper())
-    # #print(car)
-    # reg = car[1]
-    # manu = car[2]
-    # model = car[3]
-    # sipp = car[3]
-    # max_seat = car[4]
-    #CarObject.reg_num(reg)
-    #CarObject.manufacturer(manu)
-    #CarObject.model_type(model)
-    #CarObject.sipp_code(sipp)
-    #CarObject.max_seating_capacity(max_seat)
-    print(CarObject)
+    on_hire = False
+    # goes through list and squishes it all into a string
+    #CarObject = Car(car_ID ,reg_num , manufact, model_type, sipp_code, max_seating_capacity, width, length , max_speed , mpg , False)
+    #car.append(car_ID)
+    car.append(reg_num)
+    car.append(manufact.upper())
+    car.append(model_type.upper())
+    car.append(sipp_code.upper())
+    car.append(max_seating_capacity.upper())
+    car.append(width)
+    car.append(length)
+    car.append(max_speed)
+    car.append(mpg)
+    car.append(on_hire)
+    #car.append('\n')
+    #print(car)
+    car_ID = car[0]
+    reg = car[1]
+    manu = car[2]
+    model = car[3]
+    sipp = car[3]
+    max_seat = car[4]
+    width = car[5]
+    length = car[6]
+    max_speed = car[7]
+    mpg = car[8]
+    on_hire = car[9]
+    # CarObject.reg_num(reg)
+    # CarObject.manufacturer(manu)
+    # CarObject.model_type(model)
+    # CarObject.sipp_code(sipp)
+    # CarObject.max_seating_capacity(max_seat)
+    car_ID = str(csv_length + 1) + ',' + ','.join(str(x) for x in car)
+    #print(car_entry)
+    # then open the file and write the new line easy peasy
+    with open('CarRegistry.dat', 'a') as fd:
+        fd.write(car_ID)
+        print('You have entered:', car_ID)
+
 elif userchoice.upper() == 'D':
     print(input('Which car do you want to delete from the registry?: '))
+    choice = input()
+    file = 'CarRegistry.dat'['CarRegistry'.reg != choice]
+    file.to_csv('CarRegistry.dat', index=False)
 elif userchoice.upper() == 'H':
     print(input('Which car do you want to hire out?: '))
 elif userchoice.upper() == 'R':
@@ -93,31 +119,7 @@ elif userchoice.upper() == 'X':
     exit()
 else:
     print('invalid choice option')
-  #   menu(userchoice)
+    #print(menu)
 
-# def menu():
-#     print('A - Add car to registry')
-#     print('D - Delete Car from registry')
-#     print('H - Hire out')
-#     print('R - Return car to Garage')
-#     print('U - Update Car Registry')
-#     print('X - Exit')
-#
-# menu()
-# userchoice = str(input('Enter your choice'))
-#while True:
-# #    if userchoice.upper() == 'A':
-#  #       print(input('What car do you want to add to the registry?:'))
-#  #   elif userchoice.upper() == 'D':
-#   #      print(input('Which car do you want to delete from the registry?: '))
-#    # elif userchoice.upper() == 'H':
-#     #    print(input('Which car do you want to hire out?: '))
-#     #elif userchoice.upper() == 'R':
-#         print(input('Which car do you want to return?: '))
-#     elif userchoice.upper() == 'X':
-#         exit()
-#     else:
-#         print('invalid choice option')
 
-      #  menu()
-       # userchoice = str(input('Enter your choice'))
+
