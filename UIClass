@@ -1,0 +1,67 @@
+import pandas
+import csv
+class UI:
+    f = open('CarRegistry.dat', 'r')
+    # headerlist = ['POS', 'ID', ' REG NUM', 'MANUFACTURER', 'MODEL', 'SIPP', 'SEAT', 'WIDTH', 'LENGTH', 'SPEED', 'MPG','OnHIRE']
+    # writer = csv.writer(f)
+    # writer.writerow(headerlist)
+    #
+    # print(f)
+
+    # src = open("CarRegistry.dat", "r")
+    # fline = ['POS', 'ID', 'REG NUM', 'MANUFACTURER', 'MODEL', 'SIPP', 'SEAT', 'WIDTH', 'LENGTH', 'SPEED', 'MPG', 'OnHIRE']
+    # oline = src.readlines()
+    # oline.insert(0, fline)
+    # src.close()
+    #
+    # src = open("CarRegistry.dat", "a")
+    # src.writelines(oline)
+    # src.close()
+
+
+    # header1 = 'POS'
+    # header2 = 'ID'
+    # header3 = 'REG NUM'
+    # header4 = 'MANUFACTURER'
+    # header5 = 'MODEL'
+    # header6 = 'SIPP'
+    # header7 = 'SEAT'
+    # header8 = 'WIDTH'
+    # header9 = 'LENGTH'
+    # header10 = 'SPEED'
+    # header11 = 'MPG'
+    # header12 = 'OnHIRE'
+    # with open('CarRegistry.dat', 'r+') as file:
+    #     file_data = file.read()
+    #     file.seek(0,0)
+    #     file.write(header1 + '\t' + header2 + '\t' + header3 + '\t' + header4 + header5 + '\t' + header6 + '\t' + header7 + '\t' + header8 + '\t' + header9 + '\t' + header10 + '\t' + header11 + '\t' +header12 +'\n' + file_data)
+
+    # header = ['POS', 'ID' , 'REG NUM', 'MANUFACTURER', 'MODEL', 'SIPP', 'SEAT', 'WIDTH', 'LENGTH', 'SPEED', 'MPG', 'OnHIRE']
+    #
+    # with open(r'CarRegistry.dat', 'a') as fp:
+    #     fp.seek(0, 0)
+    #     fp.write('\t'.join(str(item) for item in header))
+    #
+
+    # with open('CarRegistry.dat', 'r') as contents:
+    #     save = contents.read()
+    # with open('CarRegistry.dat', 'w') as contents:
+    #     contents.write('POS, ID, REG NUM, MANUFACTURER, MODEL, SIPP, SEAT, WIDTH, LENGTH, SPEED, MPG, OnHIRE')
+    # with open('CarRegistry.dat', 'a') as contents:
+    #     contents.write(save)
+
+    header = ['ID,', 'REG NUM,', 'MANUFACTURER,', 'MODEL,', 'SIPP,', 'SEAT,', 'WIDTH,', 'LENGTH,', 'SPEED,', 'MPG,', 'OnHIRE' + '\n']
+
+    with open('CarRegistry.dat', 'r+') as file:
+        readcontent = file.read()
+        file.seek(0, 0)
+        for i in header:
+            file.write(str(i))
+
+        file.write(readcontent)
+        file.close()
+
+    with open(r'CarRegistry.dat', 'r') as f:
+        for line in f:
+            data = line.strip()
+            print(data)
