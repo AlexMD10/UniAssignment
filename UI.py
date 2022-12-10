@@ -2,8 +2,7 @@ import BasicCarClass
 import numpy as np
 import pandas as pd
 from BasicCarClass import Car
-class UI:
-
+class UI
     def __init__(self):
         self.file = pd.read_csv('CarRegistry.csv')
         self.carArray = []
@@ -20,6 +19,8 @@ class UI:
         self.userChoice = input()
 
     def pushToCarArray(self, reg_value, manu_value, model_type, sipp_code, max_seating_capacity):
+        # you will have to add all the other inputs you need like max speed and stuff below and in the params
+        #on the line above
         self.carArray.append(reg_value)
         self.carArray.append(manu_value)
         self.carArray.append(model_type)
@@ -30,19 +31,21 @@ class UI:
     def addVehicleToDataBase(self):
         if self.userChoice.upper() == 'A':
             self.carObject
-            
+            #add the rest of the inputs
             reg_value = (input("What is the car's Registration Number?"))
             manu_value = (input(('What is the Manufactuer of the car?')))
             model_type = (input('What is the Model of the car?'))
             sipp_code = (input('What is the SIPP code for the car?'))
             max_seating_capacity = (input('What is the maximum seating capacity of the car?'))
-            
+            #pushes the values to an array/list
             uiClass.pushToCarArray(reg_value, manu_value, model_type, sipp_code, max_seating_capacity)
+
             reg = self.carArray[0]
             manu = self.carArray[1]
             model = self.carArray[2]
             sipp = self.carArray[3]
             max_seat = self.carArray[4]
+            #then use the values from the list below in your car class to do any validation you need
             self.carObject.reg_num(reg)
             self.carObject.manufacturer(manu)
             self.carObject.model_type(model)
@@ -57,6 +60,8 @@ class UI:
             print(car_entry)
             #then open the file and write the new line easy peasy
             with open('CarRegistry.csv','a') as fd:
+                #writes a new line and then saves the file
+                #so this should fix that id problem you were having
                 fd.write('\n')
                 return fd.write(car_entry)
     
@@ -69,6 +74,7 @@ class UI:
             #dataframe (pandas converts csv to Dataframe which is just code way of reading it)
             #looks in the file and returns all rows where the REG column value does not
             # equal your choice
+            #basically returns everything that doesn't equal what you chose
             self.file = self.file[self.file.REG != choice]
             #then literally just save the file, the index=False tells it not to create another 
             #index column
@@ -78,24 +84,34 @@ class UI:
         if self.userChoice.upper() == 'H':
             print(('Which car do you want to hire out? Please enter registration number: '))
             choice = input()
-            # print(choice)
+            # pretty staight forward - use the same selection as above for the car
+            #I'm just using registration as the picker for now, use whatever you need
             carToHireOut = self.file[self.file.REG == choice]
+            #It gets the row from the table and checks the hired value
+            #Hired is a boolean value so have to convert it to check it (rather than string)
             if(carToHireOut['HIRED'].bool() == True):
                 return print('This car has already been hired out sorry, sucks to be you...')
             else:
+                #.loc is a way to edit individual cells, just look up pandas .loc, 
+                #checks the cell that equals your reg and the hired and sets it to true
                 self.file.loc[self.file['REG'] == choice, 'HIRED'] = True
                 self.file.to_csv('CarRegistry.csv', index=False)
                 return print('Have fun in that piece of shit car lol')
                 
     def returnCar(self):
          if self.userChoice.upper() == 'R':
+            #returning is pretty much identical
+            #might want to add some checks here though like if the car doesn't exist or 
+            #if the car was already hired out sorta thing
             print(('Which car do you want to return?: '))
-            choice= input()
+            choice = input()
             self.file.loc[self.file['REG'] == choice, 'HIRED'] = False
             self.file.to_csv('CarRegistry.csv', index=False)
             return print('Christ, what did you do to that poor old car....')
 
     def generateUserChoices(self):
+        #basically just split everything up into methods in this class and call it all below
+        #hope this makes sense but we can go over it later to explain things if you need!
         uiClass.addVehicleToDataBase()
         uiClass.deleteVehicleFromDatabase()
         uiClass.hireOutCar()
