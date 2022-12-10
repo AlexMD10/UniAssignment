@@ -76,20 +76,25 @@ class UI:
     
     def hireOutCar(self):
         if self.userChoice.upper() == 'H':
-            return print(input('Which car do you want to hire out?: '))
-            #you can probably do some similar here with the delete
-            #try searching https://www.geeksforgeeks.org/how-to-replace-values-in-column-based-on-condition-in-pandas/
-            #gives you a clue basically file.loc is the method
-            #so like file.loc(file["REG"] === your_car_reg, "ONHIRE") = True
-            #you will probably have to do some checks before hand though either with your class
-            #or here
-    
+            print(('Which car do you want to hire out? Please enter registration number: '))
+            choice = input()
+            # print(choice)
+            carToHireOut = self.file[self.file.REG == choice]
+            if(carToHireOut['HIRED'].bool() == True):
+                return print('This car has already been hired out sorry, sucks to be you...')
+            else:
+                self.file.loc[self.file['REG'] == choice, 'HIRED'] = True
+                self.file.to_csv('CarRegistry.csv', index=False)
+                return print('Have fun in that piece of shit car lol')
+                
     def returnCar(self):
          if self.userChoice.upper() == 'R':
-            return print(input('Which car do you want to return?: '))
+            print(('Which car do you want to return?: '))
+            choice= input()
+            self.file.loc[self.file['REG'] == choice, 'HIRED'] = False
+            self.file.to_csv('CarRegistry.csv', index=False)
+            return print('Christ, what did you do to that poor old car....')
 
-
-        
     def generateUserChoices(self):
         uiClass.addVehicleToDataBase()
         uiClass.deleteVehicleFromDatabase()
