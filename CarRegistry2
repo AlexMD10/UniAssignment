@@ -1,0 +1,156 @@
+import BasicCarClass
+import numpy as np
+import pandas as pd
+from BasicCarClass import Car
+#from UIClass import UI
+import distutils.util
+import sys
+import csv
+from tabulate import tabulate
+
+
+class CarReg:
+
+    # with open('CarRegistry.csv') as fp:
+    #       x = len(fp.readlines())
+    def __init__(self, userinput):
+        self.file = ('CarRegistry.csv')
+        self.carArray = []
+        self.carObject = BasicCarClass.Car(16, 17, 'GU63 ZFS', 'manufacturer', 'model_type', 'SHMP', 3, 2200, 3000, 250, 45, False)
+        self.userChoice = userinput
+
+    def pushToCarArray(self, car_id, reg_num, manu_value, model_type, sipp_code, max_seating_capacity, width, length,
+                       max_speed, mpg, on_hire):
+        # self.carArray.append(pos)
+        self.carArray.append(car_id)
+        self.carArray.append(reg_num.upper())
+        self.carArray.append(manu_value.upper())
+        self.carArray.append(model_type.upper())
+        self.carArray.append(sipp_code.upper())
+        self.carArray.append(max_seating_capacity)
+        self.carArray.append(width)
+        self.carArray.append(length)
+        self.carArray.append(max_speed)
+        self.carArray.append(mpg)
+        self.carArray.append(on_hire)
+        self.carArray.append('\n')
+
+    def addVehicleToDataBase(self):
+        with open('CarRegistry.csv') as fp:
+            x = len(fp.readlines())
+        csv_length = x
+        if self.userChoice.upper() == 'A':
+            # self.carObject
+            pos = str(csv_length + 1)
+            car_id = str(csv_length + 2)
+            reg_num = (input("What is the car's Registration Number?"))
+            self.carObject.regNumber(reg_num)
+            manu_value = (input(('What is the Manufactuer of the car?')))
+            self.carObject.manu(manu_value)
+            model_type = (input('What is the Model of the car?'))
+            self.carObject.modelType(model_type)
+            sipp_code = (input('What is the SIPP code for the car?'))
+            self.carObject.sippCode(sipp_code)
+            max_seating_capacity = int(input('What is the maximum seating capacity of the car?'))
+            self.carObject.maxSeatingCapacity(max_seating_capacity)
+            width = (int(input("What is the car's width in mm?")))
+            self.carObject.Width(width)
+            length = (int(input("What is the car's length in mm?")))
+            self.carObject.Length(length)
+            max_speed = (int(input("What is the car's max speed in MPH?")))
+            self.carObject.maxSpeed(max_speed)
+            mpg = (int(input("What is the car's mpg?")))
+            self.carObject.MPG(mpg)
+            on_hire = False
+            reg_num = str(self.carObject.reg_num.upper())
+            manu_value = str(self.carObject.manufacturer.upper())
+            model_type = str(self.carObject.model_type.upper())
+            sipp_code = str(self.carObject.sipp_code.upper())
+            max_seating_capacity = str(self.carObject.max_seating_capacity)
+            width = str(self.carObject.width)
+            length = str(self.carObject.length)
+            max_speed = str(self.carObject.max_speed)
+            mpg = str(self.carObject.mpg)
+            on_hire = str(self.carObject.on_hire)
+            testcar =','.join([pos,car_id,reg_num,manu_value,model_type,sipp_code,max_seating_capacity,width,length,max_speed,mpg,on_hire])
+            #car_id = str(csv_length + 1) + ',' + ','.join(str(x) for x in self.carArray)
+            with open('CarRegistry.csv', 'a') as fd:
+                fd.write(testcar)
+                fd.close()
+                print(testcar)
+
+    def deleteVehicleFromDatabase(self):
+        if self.userChoice.upper() == 'D':
+            registration = input('Enter the pos number of the car you want to delete:')
+            with open('CarRegistry.csv', 'r') as f:
+                reg = f.readlines()
+            reg_found = [x for x in reg if x.split(',')[0].lower() == registration.lower()]
+            if reg_found:
+                print('Your car: {} has been deleted'.format(registration))
+                reg.remove(reg_found[0])
+                with open('CarRegistry.csv', 'w') as f:
+                    f.write(''.join(reg))
+            else:
+                print('Sorry Car {} not found!.'.format(registration))
+            self.userChoice = ''
+            self.generateUserChoices()
+
+    def hireOutCar(self):
+        if self.userChoice.upper() == 'H':
+            hire = input('Enter the pos number of the car you want to hire out:')
+            file = pd.read_csv('CarRegistry.csv', header=None)
+            x = file.iloc[int(hire) - 1, 11]
+            if x == False:
+                file.iloc[int(hire) - 1, 11] = True
+                file.to_csv('CarRegistry.csv', header=None, index=False)
+                print('Your car has been successfully hired out!')
+            else:
+                print('This car is already on hire!')
+
+
+    def returnCar(self):
+        if self.userChoice.upper() == 'R':
+            hire = input('Enter the pos number of the car you want to return:')
+            file = pd.read_csv('CarRegistry.csv', header=None)
+            x = file.iloc[int(hire) - 1, 11]
+            if x == True:
+                file.iloc[int(hire) - 1, 11] = False
+                file.to_csv('CarRegistry.csv', header=None, index=False)
+                print('Thank you for hiring out our car, we hope you enjoyed it!')
+            else:
+                print('This car is aleady in the garage!')
+
+
+    #def updateregistry(self):
+            # header = ['POS', 'ID', 'REG NUM', 'MANUFACTURER', 'MODEL', 'SIPP', 'SEAT', 'WIDTH', 'LENGTH', 'SPEED', 'MPG',
+            #           'OnHIRE']
+            # menu = ['Menu:',
+            #         'A - Add car to registry',
+            #         'D - Delete car from registry',
+            #         'H - Hire out car',
+            #         'R - Return car to garage',
+            #         'U - Update car registry',
+            #         'X - Exit'
+            #         ]
+            # if self.userChoice.upper() == 'U':
+            #     with open('CarRegistry.csv', newline='') as f:
+            #         reader = csv.reader(f)
+            #         data = list(reader)
+            #         print(tabulate(data, header))
+            #         print(*menu, sep='\n')
+
+    def generateUserChoices(self):
+        # basically just split everything up into methods in this class and call it all below
+        # hope this makes sense but we can go over it later to explain things if you need!
+        self.addVehicleToDataBase()
+        self.deleteVehicleFromDatabase()
+        self.hireOutCar()
+        self.returnCar()
+        #self.updateregistry()
+        # if self.userChoice.upper() == 'X':
+        #     exit()
+
+
+#UIClass = UI()
+#carchoices = CarReg()
+#carchoices.generateUserChoices()
